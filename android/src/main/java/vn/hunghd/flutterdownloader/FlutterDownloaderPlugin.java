@@ -34,6 +34,7 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.PluginRegistry;
+import android.util.Log;
 
 public class FlutterDownloaderPlugin implements MethodCallHandler, FlutterPlugin {
     private static final String CHANNEL = "vn.hunghd/downloader";
@@ -298,6 +299,8 @@ public class FlutterDownloaderPlugin implements MethodCallHandler, FlutterPlugin
                     filename = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
                 }
                 String saveFilePath = savedDir + File.separator + filename;
+                Log.d("saveFilePath_saveFilePath", saveFilePath);
+
                 Intent intent = IntentUtils.validatedFileIntent(context, saveFilePath, task.mimeType);
                 if (intent != null) {
                     context.startActivity(intent);

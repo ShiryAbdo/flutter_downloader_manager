@@ -14,13 +14,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLConnection;
 import java.util.List;
+import android.util.Log;
+
 
 public class IntentUtils {
 
     private static Intent buildIntent(Context context, File file, String mime) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".flutter_downloader.provider", file);
+            Log.d("saveFilePath_uri", "File: " + file.getAbsolutePath());
+//            Uri uri =   Uri.fromFile(new File(file.getAbsolutePath()));
+            Log.d("saveFilePath_uri", "getPackageName: " + context.getPackageName());
+            Log.d("saveFilePath_uri", "APPLICATION_ID   : " +BuildConfig.APPLICATION_ID);
+
+            Uri uri = FileProvider.getUriForFile(context, context.getPackageName(), file);
+            Log.d("saveFilePath_uri", uri.toString());
             intent.setDataAndType(uri, mime);
         } else {
             intent.setDataAndType(Uri.fromFile(file), mime);

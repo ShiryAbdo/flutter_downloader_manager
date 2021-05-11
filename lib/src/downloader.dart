@@ -277,6 +277,11 @@ class FlutterDownloader {
       return null;
     }
   }
+  static saveInCash({required String packageDirectory}){
+   String  path = packageDirectory.replaceAll("/app_flutter","");
+    return path+"/cache";
+
+  }
 
   ///
   /// Delete a download task from DB. If the given task is running, it is canceled

@@ -336,6 +336,8 @@ public class DownloadWorker extends Worker implements MethodChannel.MethodCallHa
                 saveFilePath = savedDir + File.separator + filename;
 
                 log("fileName = " + filename);
+                log("saveFilePath = " + saveFilePath);
+
 
                 taskDao.updateTask(getId().toString(), filename, contentType);
 
